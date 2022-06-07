@@ -5,7 +5,7 @@ import UserCard from './components/UserCard';
 import AddUser from './components/AddUser';
 import { Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from './JS/actions/actionUser';
+import { getUsers, toggleFalse } from './JS/actions/actionUser';
 
 function App() {
 
@@ -28,13 +28,14 @@ function App() {
         <Button variant="outline-primary button">Users List</Button>
       </Link>
       <Link to='/add_user' >
-        <Button variant="primary button">Add Contact</Button>
+        <Button variant="primary button" onClick={()=>dispatch(toggleFalse())}>Add User</Button>
       </Link>
       <Routes>
         <Route path='/users_list' element={<div className="contact-list">
           {users.map((user, index) => <UserCard user={user} key={user._id} />)}
         </div>} />
         <Route path='/add_user' element={<AddUser />} />
+        <Route path='/edit_user' element={<AddUser />} />
       </Routes>
     </div>
   );
